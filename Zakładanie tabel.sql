@@ -1,10 +1,10 @@
-CREATE TABLE [dbo].[Jakoœæ Powietrza](
+CREATE TABLE [dbo].[JakoÅ›Ä‡ Powietrza](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Rok] [int] NULL,
 	[StanowiskoId] [int] NULL,
-	[Œrednia] [decimal](20, 5) NULL,
-	[Liczba Pomiarów] [decimal](20, 5) NULL,
-	[Kompletnoœæ] [decimal](20, 5) NULL,
+	[Åšrednia] [decimal](20, 5) NULL,
+	[Liczba PomiarÃ³w] [decimal](20, 5) NULL,
+	[KompletnoÅ›Ä‡] [decimal](20, 5) NULL,
 	[Minimum] [decimal](20, 5) NULL,
 	[Maksimum] [decimal](20, 5) NULL,
 PRIMARY KEY CLUSTERED 
@@ -22,10 +22,10 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-CREATE TABLE [dbo].[Œredni Czas](
+CREATE TABLE [dbo].[Åšredni Czas](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Œredni Czas] [varchar](max) NULL,
-	[Œredni Czas Kod] [varchar](max) NULL,
+	[Åšredni Czas] [varchar](max) NULL,
+	[Åšredni Czas Kod] [varchar](max) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -41,10 +41,10 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-CREATE TABLE [dbo].[WskaŸnik](
+CREATE TABLE [dbo].[WskaÅºnik](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[WskaŸnik Kod] [varchar](max) NULL,
-	[WskaŸnik] [varchar](max) NULL,
+	[WskaÅºnik Kod] [varchar](max) NULL,
+	[WskaÅºnik] [varchar](max) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -63,10 +63,10 @@ PRIMARY KEY CLUSTERED
 CREATE TABLE [dbo].[Stanowisko](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Data Uruchomienia] [datetime] NULL,
-	[Data Zamkniêcia] [datetime] NULL,
+	[Data ZamkniÄ™cia] [datetime] NULL,
 	[StacjaId] [int] NULL,
-	[WskaŸnikId] [int] NULL,
-	[Œredni CzasId] [int] NULL,
+	[WskaÅºnikId] [int] NULL,
+	[Åšredni CzasId] [int] NULL,
 	[Typ PomiaruId] [int] NULL,
 	[Nazwa StrefyId] [int] NULL,
 PRIMARY KEY CLUSTERED 
@@ -75,9 +75,9 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[Miejscowoœæ](
+CREATE TABLE [dbo].[WojewÃ³dÅºtwo](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Miejscowoœæ] [varchar](max) NULL,
+	[WojewÃ³dÅºtwo] [varchar](max) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -89,11 +89,11 @@ CREATE TABLE [dbo].[Stacja](
 	[Kod Stacji] [varchar](max) NULL,
 	[Nazwa Stacji] [varchar](max) NULL,
 	[Data Uruchomienia] [datetime] NULL,
-	[Data Zamkniêcia] [datetime] NULL,
+	[Data ZamkniÄ™cia] [datetime] NULL,
 	[Typ StacjiId] [int] NULL,
 	[Typ ObszaruId] [int] NULL,
 	[Rodzaj StacjiId] [int] NULL,
-	[MiejscowoœæId] [int] NULL,
+	[WojewÃ³dÅºtwoId] [int] NULL,
 	[MiastoId] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -128,20 +128,20 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
-ALTER TABLE [dbo].[Jakoœæ Powietrza]  WITH CHECK ADD  CONSTRAINT [FK_Jakoœæ Powietrza_Stanowisko] FOREIGN KEY([StanowiskoId])
+ALTER TABLE [dbo].[JakoÅ›Ä‡ Powietrza]  WITH CHECK ADD  CONSTRAINT [FK_JakoÅ›Ä‡ Powietrza_Stanowisko] FOREIGN KEY([StanowiskoId])
 REFERENCES [dbo].[Stanowisko] ([Id])
 GO
-ALTER TABLE [dbo].[Jakoœæ Powietrza] CHECK CONSTRAINT [FK_Jakoœæ Powietrza_Stanowisko]
+ALTER TABLE [dbo].[JakoÅ›Ä‡ Powietrza] CHECK CONSTRAINT [FK_JakoÅ›Ä‡ Powietrza_Stanowisko]
 GO
-ALTER TABLE [dbo].[Stanowisko]  WITH CHECK ADD  CONSTRAINT [FK_Stanowisko_Œredni Czas] FOREIGN KEY([Œredni CzasId])
-REFERENCES [dbo].[Œredni Czas] ([Id])
+ALTER TABLE [dbo].[Stanowisko]  WITH CHECK ADD  CONSTRAINT [FK_Stanowisko_Åšredni Czas] FOREIGN KEY([Åšredni CzasId])
+REFERENCES [dbo].[Åšredni Czas] ([Id])
 GO
-ALTER TABLE [dbo].[Stanowisko] CHECK CONSTRAINT [FK_Stanowisko_Œredni Czas]
+ALTER TABLE [dbo].[Stanowisko] CHECK CONSTRAINT [FK_Stanowisko_Åšredni Czas]
 GO
-ALTER TABLE [dbo].[Stanowisko]  WITH CHECK ADD  CONSTRAINT [FK_Stanowisko_WskaŸnik] FOREIGN KEY([WskaŸnikId])
-REFERENCES [dbo].[WskaŸnik] ([Id])
+ALTER TABLE [dbo].[Stanowisko]  WITH CHECK ADD  CONSTRAINT [FK_Stanowisko_WskaÅºnik] FOREIGN KEY([WskaÅºnikId])
+REFERENCES [dbo].[WskaÅºnik] ([Id])
 GO
-ALTER TABLE [dbo].[Stanowisko] CHECK CONSTRAINT [FK_Stanowisko_WskaŸnik]
+ALTER TABLE [dbo].[Stanowisko] CHECK CONSTRAINT [FK_Stanowisko_WskaÅºnik]
 GO
 ALTER TABLE [dbo].[Stanowisko]  WITH CHECK ADD  CONSTRAINT [FK_Stanowisko_Typ Pomiaru] FOREIGN KEY([Typ PomiaruId])
 REFERENCES [dbo].[Typ Pomiaru] ([Id])
@@ -163,10 +163,10 @@ REFERENCES [dbo].[Typ Obszaru] ([Id])
 GO
 ALTER TABLE [dbo].[Stacja] CHECK CONSTRAINT [FK_Stacja_Typ Obszaru]
 GO
-ALTER TABLE [dbo].[Stacja]  WITH CHECK ADD  CONSTRAINT [FK_Stacja_Miejscowoœæ] FOREIGN KEY([MiejscowoœæId])
-REFERENCES [dbo].[Miejscowoœæ] ([Id])
+ALTER TABLE [dbo].[Stacja]  WITH CHECK ADD  CONSTRAINT [FK_Stacja_WojewÃ³dÅºtwo] FOREIGN KEY([WojewÃ³dÅºtwoId])
+REFERENCES [dbo].[WojewÃ³dÅºtwo] ([Id])
 GO
-ALTER TABLE [dbo].[Stacja] CHECK CONSTRAINT [FK_Stacja_Miejscowoœæ]
+ALTER TABLE [dbo].[Stacja] CHECK CONSTRAINT [FK_Stacja_WojewÃ³dÅºtwo]
 GO
 ALTER TABLE [dbo].[Stacja]  WITH CHECK ADD  CONSTRAINT [FK_Stacja_Rodzaj Stacji] FOREIGN KEY([Rodzaj StacjiId])
 REFERENCES [dbo].[Rodzaj Stacji] ([Id])
