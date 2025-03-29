@@ -211,6 +211,22 @@ Update STACJE$
 Set Miejscowość='Włocławek'
 Where Nr=255
 
+SELECT [Kod stacji]
+FROM (
+    SELECT [Kod stacji] FROM ['As(PM10)$']
+    UNION SELECT [Kod stacji] FROM ['BaP(PM10)$']
+    UNION SELECT [Kod stacji]  from C6H6$
+    UNION SELECT [Kod stacji]  from ['Cd(PM10)$']
+    UNION SELECT [Kod stacji]  from CO$
+    UNION SELECT [Kod stacji]  from ['Ni(PM10)$']
+    UNION SELECT [Kod stacji]  from NO2$
+    UNION SELECT [Kod stacji]  from NOx$
+    UNION SELECT [Kod stacji]  from O3$
+    UNION SELECT [Kod stacji] from SO2$
+) AS [Kod stacji]
+Where [Kod stacji] not in (Select [Kod stacji] from STACJE$)
+ORDER BY [Kod stacji] ASC;
+
 --Spójność wartości słownikowych
 SELECT DISTINCT Województwo
 FROM (
