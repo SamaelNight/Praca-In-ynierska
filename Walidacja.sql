@@ -210,7 +210,22 @@ Where Nr=100
 Update STACJE$
 Set Miejscowość='Włocławek'
 Where Nr=255
+ 
 
+ SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność
+FROM (
+    SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność FROM ['As(PM10)$']
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność FROM ['BaP(PM10)$']
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from C6H6$
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from ['Cd(PM10)$']
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from CO$
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from ['Ni(PM10)$']
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from NO2$
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from NOx$
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność  from O3$
+    UNION SELECT Rok,Województwo,[Kod strefy],[Nazwa Strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],Średnia,Min,Kompletność from SO2$
+) AS Pods
+Where [Kod stacji] in (
 SELECT [Kod stacji]
 FROM (
     SELECT [Kod stacji] FROM ['As(PM10)$']
@@ -225,7 +240,7 @@ FROM (
     UNION SELECT [Kod stacji] from SO2$
 ) AS [Kod stacji]
 Where [Kod stacji] not in (Select [Kod stacji] from STACJE$)
-ORDER BY [Kod stacji] ASC;
+)
 
 --Spójność wartości słownikowych
 SELECT DISTINCT Województwo
