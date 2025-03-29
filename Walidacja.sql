@@ -200,6 +200,12 @@ Select * from STANOWISKA$ where
 [Województwo]  like 'Brak%'  or
 [Nazwa strefy]  like 'Brak%' 
 
+Select * from STACJE$
+Where Miejscowość='Włocławek'
+
+Update STACJE$
+Set Miejscowość='Włocławek'
+Where Nr=255
 --Spójność wartości słownikowych
 SELECT DISTINCT Województwo
 FROM (
