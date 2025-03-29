@@ -1,4 +1,4 @@
-﻿--Kompletność danych:
+--Kompletność danych:
 Select * from ['As(PM10)$'] where 
 Rok is null or
 Województwo is null or
@@ -323,6 +323,30 @@ or Średnia<0
 or Maks<0
 or Kompletność<0
 
+--Zamiana ujemnych wartości minimalnych na dodatnie
+Update C6H6$
+Set Min=Min*-1
+Where Min<0
+
+Update CO$
+Set Min=Min*-1
+Where Min<0
+
+Update NO2$
+Set Min=Min*-1
+Where Min<0
+
+Update NOx$
+Set Min=Min*-1
+Where Min<0
+
+Update O3$
+Set Min=Min*-1
+Where Min<0
+
+Update SO2$
+Set Min=Min*-1
+Where Min<0
 --Brak duplikatów
 SELECT Rok,Województwo,[Kod strefy],[Nazwa strefy],[Kod stacji],Wskaźnik,[Czas uśredniania],COUNT(*) AS LiczbaWystapien
 FROM (
