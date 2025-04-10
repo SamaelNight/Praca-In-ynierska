@@ -75,9 +75,9 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
-CREATE TABLE [dbo].[Wojewódźtwo](
+CREATE TABLE [dbo].[Województwo ](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Wojewódźtwo] [varchar](max) NULL,
+	[Województwo ] [varchar](max) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -90,10 +90,12 @@ CREATE TABLE [dbo].[Stacja](
 	[Nazwa Stacji] [varchar](max) NULL,
 	[Data Uruchomienia] [datetime] NULL,
 	[Data Zamknięcia] [datetime] NULL,
+	[Współrzędne Północ] decimal(10,10) NULL,
+	[Współrzędne Wschód] decimal(10,10) NULL,
 	[Typ StacjiId] [int] NULL,
 	[Typ ObszaruId] [int] NULL,
 	[Rodzaj StacjiId] [int] NULL,
-	[WojewódźtwoId] [int] NULL,
+	[Województwo Id] [int] NULL,
 	[MiastoId] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -163,10 +165,10 @@ REFERENCES [dbo].[Typ Obszaru] ([Id])
 GO
 ALTER TABLE [dbo].[Stacja] CHECK CONSTRAINT [FK_Stacja_Typ Obszaru]
 GO
-ALTER TABLE [dbo].[Stacja]  WITH CHECK ADD  CONSTRAINT [FK_Stacja_Wojewódźtwo] FOREIGN KEY([WojewódźtwoId])
-REFERENCES [dbo].[Wojewódźtwo] ([Id])
+ALTER TABLE [dbo].[Stacja]  WITH CHECK ADD  CONSTRAINT [FK_Stacja_Województwo ] FOREIGN KEY([Województwo Id])
+REFERENCES [dbo].[Województwo ] ([Id])
 GO
-ALTER TABLE [dbo].[Stacja] CHECK CONSTRAINT [FK_Stacja_Wojewódźtwo]
+ALTER TABLE [dbo].[Stacja] CHECK CONSTRAINT [FK_Stacja_Województwo ]
 GO
 ALTER TABLE [dbo].[Stacja]  WITH CHECK ADD  CONSTRAINT [FK_Stacja_Rodzaj Stacji] FOREIGN KEY([Rodzaj StacjiId])
 REFERENCES [dbo].[Rodzaj Stacji] ([Id])
